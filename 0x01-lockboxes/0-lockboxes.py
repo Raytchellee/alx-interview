@@ -1,23 +1,21 @@
 #!/usr/bin/python3
 """Solve lockboxes"""
 
+
 def canUnlockAll(boxes):
-    """Unlocking all lockboxes"""
-    if len(boxes) < 1:
+    if not boxes:
         return False
 
-    visited = set()
-    visited.add(0)
-    idx = boxes[0][:]
-    res = [0]
+    n = len(boxes)
+    visited = [False] * n
+    visited[0] = True
+    queue = [0]
 
-    while len(idx) > 0:
-        current = idx.pop(0)
-        if current in visited and visited[current] > n:
-            continue
-        visited.add(current)
-        res.append(current)
-        for val in boxes[current]:
-            idx.append(val)
+    while queue:
+        current_box = queue.pop(0)
+        for key in boxes[current_box]:
+            if key < n and not visited[key]:
+                visited[key] = True
+                queue.append(key)
 
-    return len(res) == len(boxes)
+    return all(visited)
