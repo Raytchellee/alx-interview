@@ -13,7 +13,7 @@ def canUnlockAll(boxes):
 
     while len(idx) > 0:
         current = idx.pop(0)
-        if current in visited:
+        if current in visited and visited[current] > n:
             continue
         visited.add(current)
         res.append(current)
