@@ -3,9 +3,11 @@
 import sys
 import signal
 
+
 def signal_handler(sig, frame):
     print_stats()
     sys.exit(0)
+
 
 def print_stats():
     total_size = sum(file_sizes.values())
@@ -13,6 +15,7 @@ def print_stats():
     for code in sorted(status_codes.keys()):
         if status_codes[code] > 0:
             print("{}: {}".format(code, status_codes[code]))
+
 
 status_codes = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
 file_sizes = {}
@@ -37,4 +40,3 @@ try:
 except KeyboardInterrupt:
     print_stats()
     sys.exit(0)
-
