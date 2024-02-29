@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+"""Checking the cause of error"""
+
 
 import sys
 import signal
