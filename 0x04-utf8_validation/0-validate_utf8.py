@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-
+"""UTF-8 Validation"""
 
 def validUTF8(data):
     def is_start_byte(byte):
+        """UTF-8 Validation"""
         return (byte >> 7) == 0 or \
                (byte >> 5) == 0b110 or \
                (byte >> 4) == 0b1110 or \
