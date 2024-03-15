@@ -15,24 +15,24 @@ if int(sys.argv[1]) < 4:
     print("N must be at least 4")
     exit(1)
 
-input = int(sys.argv[1])
+q = int(sys.argv[1])
 
 
-def get_q(input, d=0, x=[], y=[], z=[]):
+def get_q(q, d=0, x=[], y=[], z=[]):
     """ finding all locations """
-    if d < input:
-        for v in range(input):
+    if d < q:
+        for v in range(q):
             if v not in x and d + v not in y and d - v not in z:
-                yield from get_q(input, d + 1, x + [v], y + [d + v], z + [d - v])
+                yield from get_q(q, d + 1, x + [v], y + [d + v], z + [d - v])
     else:
         yield x
 
 
-def solve_n(input):
+def solve_n(q):
     """ solving for value """
     vals = []
     count = 0
-    for res in get_q(input, 0):
+    for res in get_q(q, 0):
         for item in res:
             vals.append([count, item])
             count += 1
@@ -41,4 +41,4 @@ def solve_n(input):
         count = 0
 
 
-solve_n(input)
+solve_n(q)
