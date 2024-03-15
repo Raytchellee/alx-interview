@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" N queens """
+""" Solve N queens """
 import sys
 
 
@@ -15,30 +15,30 @@ if int(sys.argv[1]) < 4:
     print("N must be at least 4")
     exit(1)
 
-n = int(sys.argv[1])
+input = int(sys.argv[1])
 
 
-def queens(n, i=0, a=[], b=[], c=[]):
-    """ find possible positions """
-    if i < n:
-        for j in range(n):
-            if j not in a and i + j not in b and i - j not in c:
-                yield from queens(n, i + 1, a + [j], b + [i + j], c + [i - j])
+def get_q(input, d=0, x=[], y=[], z=[]):
+    """ finding all locations """
+    if d < input:
+        for v in range(input):
+            if v not in x and d + v not in y and d - v not in z:
+                yield from get_q(input, d + 1, x + [v], y + [d + v], z + [d - v])
     else:
-        yield a
+        yield x
 
 
-def solve(n):
-    """ solve """
-    k = []
-    i = 0
-    for solution in queens(n, 0):
-        for s in solution:
-            k.append([i, s])
-            i += 1
-        print(k)
-        k = []
-        i = 0
+def solve_n(input):
+    """ solving for value """
+    vals = []
+    count = 0
+    for res in get_q(input, 0):
+        for item in res:
+            vals.append([count, item])
+            count += 1
+        print(vals)
+        vals = []
+        count = 0
 
 
-solve(n)
+solve_n(input)
