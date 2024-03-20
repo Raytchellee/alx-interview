@@ -3,7 +3,7 @@
 const req = require('request');
 
 req(
-  'https://swapi-api.hbtn.io/api/films/' + process.argv[2],
+  `https://swapi-api.hbtn.io/api/films/${process.argv[2]}`,
   function (error, response, responseBody) {
     if (error) throw error;
     const characters = JSON.parse(responseBody).characters;
